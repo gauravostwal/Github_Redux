@@ -1,0 +1,140 @@
+body{
+    background-color: #E8E8E8;
+}
+.item-1{
+    
+    border: 1px black;
+    background-color: lightsteelblue;
+    padding: 10px 10px 1px 1px;
+    height: 100%;
+    width: 100%;
+    margin-top: 5px;
+}
+.item-2{
+    border: 1px black;
+    background-color: lightsteelblue;
+    
+    margin-top: 60px;
+    padding-bottom:20px;
+    padding-top: 20px;
+}
+.heading{
+    background-color:lightsteelblue; 
+}
+.item-3{
+    border: 1px black;
+    
+    height: 100%;
+    margin-top: 65px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    transition:opacity 3s
+}
+.item-4{
+    border: 1px black;
+    background-color: lightsteelblue;
+    padding: 10px 10px 1px 1px;
+    
+    width: 100%;
+    margin-top: 25px;
+}
+.item-5{
+    border: 1px black;
+    background-color: lightsteelblue;
+    padding: 10px 10px 1px 1px;
+    margin-top: 25px;
+}
+.main-block{
+    padding-bottom: 20px;
+}
+.rounded-circle{
+    width: 50%;
+    height:50%;
+}
+.search-bar{
+    padding-top:5px;
+    padding-bottom: 5px;
+    background-color:steelblue;
+}
+.input-tag{
+    width:50%;
+}
+.image-attack{
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    border-radius: 50%;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
+.imagePlay{
+    width:30%;
+    margin-left: 200px;
+}
+.btn-primary{
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+
+}
+
+#select-man{
+    width:100%;
+    height:100%;
+}
+.table-border{
+    border-style: inset;
+}
+
+.table-down{
+    padding-top:10px;
+}
+.pagination{
+    margin:auto;
+    cursor: pointer;
+}
+.search-box{
+    width:100%;
+    
+}
+.down{
+    margin-top:10px;
+}
+.loader-down{
+    margin-top:300px;
+}
+.example-appear {
+    opacity: 0.01;
+  }
+  
+  .example-appear.example-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+  }
+  .top-bar{
+      font-size:25px;
+  }
+
+  .side-bar{
+      font-size:17px;
+  }
+  
+  .bg-steelblue{
+      background-color: lightsteelblue;
+  }
+
+  .text-filter{
+        
+      cursor: pointer;
+      color:black;
+  }
+  .text-filter :hover{
+    text-decoration: none;
+    color:black;
+  }
+  .hello{
+    height: 680px;
+    margin-top: 10px;
+    overflow-y: scroll;
+  }
