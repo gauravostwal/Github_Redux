@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import AutoComplete from 'material-ui/AutoComplete';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import { addArticle, addView } from '../../actions/addactions';
 
 const mapDispatchToProps = (dispatch) => {
@@ -53,7 +56,8 @@ class Searchbar extends React.Component {
                     <div className="row">
                         <div className="col-md-2" />
                         <div className="col-md-8">
-                            <input type="text" className="form-control justify-content-center search-box" value={this.state.isName} placeholder="Search..." onChange={e => this.handleChangeofSearch(e)} />
+                           
+                            <input type="text" className="form-control justify-content-center search-box" value={this.state.title} placeholder="Search..." onChange={e => this.handleChangeofSearch(e)} />
                         </div>
                         <div className="col-md-2" />
                     </div>
