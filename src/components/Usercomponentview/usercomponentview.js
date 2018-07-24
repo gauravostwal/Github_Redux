@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import List from '../Listview/listview';
 import Grid from '../Gridview/gridview';
 
-const mapStatetoProps = (state) => {
-    return { articles: state.articles, view: state.view };
-};
+const mapStatetoProps = state => ({ articles: state.articles, view: state.view });
 
 class Usercomponentview extends React.Component {
     constructor(props) {
@@ -19,15 +17,15 @@ class Usercomponentview extends React.Component {
         }
 
         if (nextProps.articles !== this.props.articles) {
-            this.setState({ dummy: nextProps.articles });  
+            this.setState({ dummy: nextProps.articles });
         }
     }
 
     render() {
         return (
-            <div>
-               {this.state.dummyview.view !== 'Grid_view' ? <List /> : <Grid /> }
-            </div>
+          <div>
+            {this.state.dummyview.view !== 'Grid_view' ? <List /> : <Grid /> }
+          </div>
         );
     }
 }

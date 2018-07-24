@@ -1,70 +1,67 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AutoComplete from 'material-ui/AutoComplete';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
 import { addArticle, addView } from '../../actions/addactions';
 
-const mapDispatchToProps = (dispatch) => {
-    return {
+const mapDispatchToProps = dispatch => ({
 
         article: (article) => {
             dispatch(addArticle(article));
         },
         viewsee: (view) => {
             dispatch(addView(view));
-        }
+        },
 
-    };
-};
+    });
 
-const mapStatetoProps = (state) => {
-    return { articles: state.articles };
-};
+const mapStatetoProps = state => ({ articles: state.articles });
 
 class Searchbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            views: 'list_view'
+            views: 'listview',
         };
     }
 
-    handleChangeofSearch = (event) => {
-        this.setState({ title: event.target.value });
-        const title = event.target.value;
+    handleChangeofSearch = (event, value) => {
+        this.setState({ title: value });
+        const title = value;
         const { article } = this.props;
         article({ title });
     }
 
-    handleListThing = (event) => {
-        this.setState({ views: event.target.value });
-        const view = event.target.value;
+    handleListThing = (event, index, value) => {
+        console.log(value);
+        this.setState({ views: value });
+        const view = value;
         const { viewsee } = this.props;
         viewsee({ view });
     }
 
     render() {
         return (
-            <div className="item-2" key="1">
-                <h3 className="text-center" key="2">
+          <div className="item-2" key="1">
+            <h3 className="text-center" key="2">
                     Searching
-                </h3>
-                <hr />
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-2" />
-                        <div className="col-md-8">
-                           
-                            <input type="text" className="form-control justify-content-center search-box" value={this.state.title} placeholder="Search..." onChange={e => this.handleChangeofSearch(e)} />
-                        </div>
-                        <div className="col-md-2" />
-                    </div>
-                    <div className="row down">
-                        <div className="col-md-2" />
-                        <div className="col-md-8">
-                            <select value={this.state.views} onChange={this.handleListThing} id="select-man" className="custom-select form-control">
+            </h3>
+            <hr />
+            <div className="container">
+              <div className="row">
+                <div className="col-md-2" />
+                <div className="col-md-8 ">
+
+                  <TextField hintText="Hint Text" className="input-tag" value={this.state.title} onChange={this.handleChangeofSearch} />
+                </div>
+                <div className="col-md-2" />
+              </div>
+              <div className="row down">
+                <div className="col-md-2" />
+                <div className="col-md-8">
+                  {/* <select value={this.state.views} onChange={this.handleListThing} id="select-man" className="custom-select form-control">
                                 <option value="" disabled selected>
                                     Option for Views
                                 </option>
@@ -74,13 +71,19 @@ class Searchbar extends React.Component {
                                 <option value="Grid_view">
                                     Grid View
                                 </option>
-                            </select>
-                        </div>
-                        <div className="col-md-2" />
-                    </div>
+                            </select> */}
+                  <SelectField floatingLabelText="View" value={this.state.views} onChange={this.handleListThing}>
+                    <MenuItem value="list_view" primaryText="List View" />
+                    <MenuItem value="Grid_view" primaryText="Grid View" />
+                  </SelectField>
+
+
                 </div>
-                <hr />
+                <div className="col-md-2" />
+              </div>
             </div>
+            <hr />
+          </div>
         );
     }
 }

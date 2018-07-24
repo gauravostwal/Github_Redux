@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import { addSort } from '../../actions/addactions';
 
-const mapStatetoProps = (state) => {
-    return { articles: state.articles };
-};
+const mapStatetoProps = state => ({ articles: state.articles });
 
-const mapDispatchToProps = (dispatch) => {
-    return { 
+const mapDispatchToProps = dispatch => ({
         sortlist: (sortdata) => {
             dispatch(addSort(sortdata));
-        }
-    };
-};
+        },
+    });
 
 class Sorting extends React.Component {
     constructor(props) {
@@ -26,50 +24,41 @@ class Sorting extends React.Component {
         }
     }
 
-    handleSortThing = (event) => {
-        const data = event.target.value; 
-        this.setState({ sort: event.target.value });
+    handleSortThing = (event, index, value) => {
+        const data = value;
+        this.setState({ sort: value });
         const { sortlist } = this.props;
         sortlist({ data });
     }
 
     render() {
         return (
-            <div>
-                <div className="item-2">
-                    <h3 className="text-center">
-                        Sorting
-                    </h3>
-                    <hr />
-                    <div className="container">
 
-                        <div className="row down">
-                            <div className="col-md-2" />
-                            <div className="col-md-8">
-                                <select value={this.state.sort} onChange={this.handleSortThing} placeholder="Select from the items" id="select-man" className="custom-select form-control">
-                                    <option value="" disabled selected>
-                                        Select your option
-                                    </option>
-                                    <option value="score_ascending">
-                                        Score Ascending
-                                    </option>
-                                    <option value="score_descending">
-                                        Score Descending
-                                    </option>
-                                    <option value="name_ascending">
-                                        Name ascending
-                                    </option>
-                                    <option value="name_descending">
-                                        Name Descending
-                                    </option>
-                                </select>
-                            </div>
-                            <div className="col-md-2" />
-                        </div>
-                    </div>
-                    <hr />
+          <div>
+            <div className="item-2">
+              <h3 className="text-center">
+                        Sorting
+              </h3>
+              <hr />
+              <div className="container">
+
+                <div className="row down">
+                  <div className="col-md-2" />
+                  <div className="col-md-8">
+                    <SelectField floatingLabelText="Sorting" value={this.state.sort} onChange={this.handleSortThing}>
+                      <MenuItem value="score_ascending" primaryText="Score Ascending" />
+                      <MenuItem value="score_descending" primaryText="Score Descending" />
+                      <MenuItem value="name_ascending" primaryText="Name Ascending" />
+                      <MenuItem value="name_descending" primaryText="Name Descending" />
+                    </SelectField>
+                  </div>
+                  <div className="col-md-2" />
                 </div>
+              </div>
+              <hr />
             </div>
+          </div>
+
         );
     }
 }

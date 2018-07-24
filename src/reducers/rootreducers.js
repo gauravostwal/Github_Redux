@@ -8,21 +8,28 @@ const initialState = {
     profiles: [],
     repo: [],
     follower: [],
-    following: []
+    following: [],
+    logg: [],
+    repo_comment: [],
+    repobasedname: [],
 };
 let user = [];
 let sorteddata = [];
 let filterdata = [];
-let dustbin = [];
+const commentsection = [];
+let repodata = [];
+let dumb = [];
+const fred = [];
+
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_USER':
 
-            axios.get('https://api.github.com/search/users?q=' + action.payload.title).then((res) => {
+            axios.get(`https://api.github.com/search/users?q=${action.payload.title}`).then((res) => {
                 user = res.data.items;
             });
-            return { 
-                ...state, articles: user, view: state.view, dummy: user
+            return {
+                ...state, articles: user, view: state.view, dummy: user,
              };
 
         case 'VIEW':
@@ -34,16 +41,12 @@ const rootReducer = (state = initialState, action) => {
             if (action.payload.data === 'score_ascending') {
                 let sortthings = [];
                 sortthings = state.articles;
-                sortthings.sort((a, b) => {
-                    return a.score - b.score;
-                });
+                sortthings.sort((a, b) => a.score - b.score);
                 sorteddata = sortthings;
             } else if (action.payload.data === 'score_descending') {
                 let sortthings = [];
                 sortthings = state.articles;
-                sortthings.sort((a, b) => {
-                 return b.score - a.score;
-             });
+                sortthings.sort((a, b) => b.score - a.score);
                  sorteddata = sortthings;
             } else if (action.payload.data === 'name_ascending') {
                 let sortthings = [];
@@ -57,7 +60,7 @@ const rootReducer = (state = initialState, action) => {
                     if (Aname > Bname) {
                         return 1;
                     }
-                    
+
                         return 0;
                 });
                 sorteddata = sortthings;
@@ -73,21 +76,20 @@ const rootReducer = (state = initialState, action) => {
                     if (Aname < Bname) {
                         return 1;
                     }
-                    
+
                         return 0;
                 });
                 sorteddata = sortthings;
             }
-            
+
             return { ...state, sort: action.payload.data, articles: sorteddata };
+
         case 'FILTER':
 
         if (action.payload.data === 'score_50') {
                 let sortthings = [];
                 sortthings = state.articles;
-                filterdata = sortthings.filter((number) => {
-                return number.score < 55;
-            });
+                filterdata = sortthings.filter(number => number.score < 55);
         } else if (action.payload.data === 'All') {
                 filterdata = state.dummy;
         } else if (action.payload.data === 'score_50_100') {
@@ -101,20 +103,29 @@ const rootReducer = (state = initialState, action) => {
         } else if (action.payload.data === 'score_100') {
             let sortthings = [];
             sortthings = state.articles;
-            filterdata = sortthings.filter((number) => {
-                    return number.score > 100;
-            });
+            filterdata = sortthings.filter(number => number.score > 100);
         }
 
                 return { ...state, articles: filterdata };
             case 'PROFILE':
-                return { ...state, profiles: action.payload.infouser, repo: action.payload.inforepo };        
+                return { ...state, profiles: action.payload.infouser, repo: action.payload.inforepo };
 
             case 'FOLLOW':
-                 dustbin = action.payload.info;
-                return { ...state, follower: dustbin };
+                return { ...state, follower: action.payload.info };
             case 'FOLLOWING':
                 return { ...state, following: action.payload.info };
+            case 'LOGIN':
+                return { ...state, logg: action.payload.pass };
+
+            case 'COMMENT':
+                fred.push({ id: action.payload, comment: action.commentid, avatarurl: action.photo });
+                return { ...state, repo_comment: fred, repobasedname: fred.filter(data => data.id === action.payload) };
+            case 'ID':
+                repodata = state.repo_comment;
+                dumb = repodata.filter((userid) => {
+                    return userid.id === action.payload.data;
+                });
+                return { ...state, repobasedname: dumb };
             default:
             return state;
     }

@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const mapStatetoProps = (state) => {
-    return { articles: state.articles, sort: state.sort };
-};
+const mapStatetoProps = state => ({ articles: state.articles, sort: state.sort });
 
 class Listview extends React.Component {
     constructor(props) {
@@ -14,60 +12,60 @@ class Listview extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.articles !== this.props.articles) {
-            this.setState({ dummy: nextProps.articles });  
+            this.setState({ dummy: nextProps.articles });
         }
     }
 
     render() {
         return (
-            <div>
-               <table className="table item-3 table-striped">
-               <thead className="heading">
-                    <tr>
-                        <th>
+          <div>
+            <table className="table item-3 table-striped">
+              <thead className="heading">
+                <tr>
+                  <th>
                             Sr no.
-                        </th>
-                        <th>
+                  </th>
+                  <th>
                             Name
-                        </th>
-                        <th>
+                  </th>
+                  <th>
                             Profile Url
-                        </th>
-                        <th>
+                  </th>
+                  <th>
                             Profile Type
-                        </th>
-                        <th>
+                  </th>
+                  <th>
                             Score
-                        </th>
-                    </tr>
-               </thead>
-               {this.props.articles !== undefined ? this.props.articles.map((person, index) => (
-                    <tbody>
-                            <tr>
-                                <td>
-                                    { ++index }
-                                </td>
-                                <td>
-                                <Link to={'/users/' + person.login}>
-                                            {person.login}
-                                </Link>
-                                </td>
-                                <td>
-                                    {person.url}
-                                </td>
-                                <td>
-                                 {person.type}
-                                </td>
-                                <td>
-                                  {person.score}
-                                </td>
-                            </tr>
-                    </tbody>
+                  </th>
+                </tr>
+              </thead>
+              {this.props.articles !== undefined ? this.props.articles.map((person, index) => (
+                <tbody>
+                  <tr>
+                    <td>
+                      { ++index }
+                    </td>
+                    <td>
+                      <Link to={`/users/${person.login}`}>
+                        {person.login}
+                      </Link>
+                    </td>
+                    <td>
+                      {person.url}
+                    </td>
+                    <td>
+                      {person.type}
+                    </td>
+                    <td>
+                      {person.score}
+                    </td>
+                  </tr>
+                </tbody>
                ))
 
                : <hr />}
-               </table>
-            </div>
+            </table>
+          </div>
         );
     }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { addFilter } from '../../actions/addactions';
 
-const mapDispatchToProps = (dispatch) => {
-    return {
+const mapDispatchToProps = dispatch => ({
         fill: (article) => {
             dispatch(addFilter(article));
-        }
-    };
-};
+        },
+    });
 
 class Filter extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class Filter extends React.Component {
     }
 
     handleRadioAll = (event) => {
-        const data = event.target.value;    
+        const data = event.target.value;
         this.setState({ filter: event.target.value });
         const { fill } = this.props;
         fill({ data });
@@ -25,66 +25,34 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="item-2">
-                    <h3 className="text-center">
+          <div>
+            <div className="item-2">
+              <h3 className="text-center">
                         Filter
-                    </h3>
-                    <hr />
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-3" />
-                            <div className="col-md-8">
-                                
-                                <input type="radio" id="customRadio1" name="optradio" value="All" onChange={e => this.handleRadioAll(e)} />
-                                    <label>
-                                        All Information
-                                    </label>
-                                
-                            </div>
-                            <div className="col-md-1" />
-                        </div>
-                        <div className="row">
-                            <div className="col-md-3" />
-                            <div className="col-md-8">
-                                
-                                    <input type="radio" name="optradio" value="score_50" onChange={e => this.handleRadioAll(e)} />
-                                    <label>
-                                        Score less than 55
-                                    </label>
-                                
-                            </div>
-                            <div className="col-md-1" />
-                        </div>
+              </h3>
+              <hr />
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-3" />
+                  <div className="col-md-8">
 
-                        <div className="row">
-                            <div className="col-md-3" />
-                            <div className="col-md-8">
-                                
-                                    <input type="radio" name="optradio" value="score_50_100" onChange={e => this.handleRadioAll(e)} />
-                                    <label>
-                                        Score between 50-100
-                                    </label>
-                                
-                            </div>
-                            <div className="col-md-1" />
-                        </div>
+                    <MuiThemeProvider>
+                      <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+                        <RadioButton id="customRadio1" name="optradio" value="All" labelStyle={{ color: 'white' }} label="All" onClick={this.handleRadioAll} />
+                        <RadioButton id="customRadio1" name="optradio" value="score_50" labelStyle={{ color: 'white' }} label="Score less than 50" onClick={e => this.handleRadioAll(e)} />
+                        <RadioButton id="customRadio1" name="optradio" value="score_50_100" labelStyle={{ color: 'white' }} label="Score 50-100" onClick={e => this.handleRadioAll(e)} />
+                        <RadioButton id="customRadio1" name="optradio" value="score_100" labelStyle={{ color: 'white' }} label="Score greater 100" onClick={e => this.handleRadioAll(e)} />
 
-                        <div className="row">
-                            <div className="col-md-3" />
-                            <div className="col-md-9">
-                                
-                                    <input type="radio" name="optradio" value="score_100" onChange={e => this.handleRadioAll(e)} />
-                                    <label>
-                                        Score greater than 100
-                                    </label>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
+                      </RadioButtonGroup>
+                    </MuiThemeProvider>
+                  </div>
+                  <div className="col-md-1" />
                 </div>
-            </div>);
+
+              </div>
+              <hr />
+            </div>
+          </div>);
     }
 }
 const Fill = connect(null, mapDispatchToProps)(Filter);

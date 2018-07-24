@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStatetoProps = (state) => {
-    return { articles: state.articles };
-};
+const mapStatetoProps = state => ({ articles: state.articles });
 
 class Gridview extends React.Component {
     constructor(props) {
@@ -30,70 +28,70 @@ class Gridview extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.props.articles !== undefined ? this.props.articles.map((person, index) => (
-                    <div className="item-1" key={person.id}>
-                        <img className="image-attack" src={person.avatar_url} />
-                        <h3 className="text-center">
-                            {person.login}
-                        </h3>
-                        <h6 className="text-center">
+          <div>
+            {this.props.articles !== undefined ? this.props.articles.map((person, index) => (
+              <div className="item-1" key={person.id}>
+                <img className="image-attack" src={person.avatar_url} />
+                <h3 className="text-center">
+                  {person.login}
+                </h3>
+                <h6 className="text-center">
                             Profile:
-                            {person.url}
-                        </h6>
-                        <h6 className="text-center">
+                  {person.url}
+                </h6>
+                <h6 className="text-center">
                             Score:
-                            {person.score}
-                        </h6>
-                        <button className="btn btn-primary" type="button" id="display-on" onClick={e => this.viewthecontent(e, index)}>
+                  {person.score}
+                </h6>
+                <button className="btn btn-primary" type="button" id="display-on" onClick={e => this.viewthecontent(e, index)}>
                             Details
-                        </button>
-                        {index === this.state.index && this.state.open === true
+                </button>
+                {index === this.state.index && this.state.open === true
                             ? (
-                                <div className="row" id="data-table">
+                              <div className="row" id="data-table">
 
-                                    <div className="col-md-12 col-lg-12 col-sm-12 table-down">
-                                        <table className="table table-border">
-                                            <thead className="thead-dark table-border">
-                                                <tr className="table-border">
+                                <div className="col-md-12 col-lg-12 col-sm-12 table-down">
+                                  <table className="table table-border">
+                                    <thead className="thead-dark table-border">
+                                      <tr className="table-border">
 
-                                                    <th>
+                                        <th>
                                                         Repository Url
-                                                    </th>
-                                                    <th>
+                                        </th>
+                                        <th>
                                                         Profile Url
-                                                    </th>
-                                                    <th>
+                                        </th>
+                                        <th>
                                                         Score
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
 
-                                                    <td>
-                                                        {person.repos_url}
-                                                    </td>
-                                                    <td>
-                                                        {person.type}
-                                                    </td>
-                                                    <td>
-                                                        {person.score}
-                                                    </td>
-                                                </tr>
+                                        <td>
+                                          {person.repos_url}
+                                        </td>
+                                        <td>
+                                          {person.type}
+                                        </td>
+                                        <td>
+                                          {person.score}
+                                        </td>
+                                      </tr>
 
-                                            </tbody>
-                                        </table>
+                                    </tbody>
+                                  </table>
 
-                                    </div>
+                                </div>
 
-                                </div>)
+                              </div>)
                             : <hr />}
-                    </div>
+              </div>
                 ))
 
                     : <hr />}
-            </div>
+          </div>
         );
     }
 }
