@@ -4,21 +4,20 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
     template: './index.html',
     filename: './index.html',
-    
+    load: './assets/loader.gif',
 });
 
 
 module.exports = {
     entry: [
-        './index.js'
+        './index.js',
     ],
     devServer: {
-        hot: true
+        hot: true,
     },
     output: {
         filename: 'bundle.js',
         path: resolve(__dirname, 'dist'),
-        // publicPath: '/'
     },
     context: resolve(__dirname, 'src'),
     module: {

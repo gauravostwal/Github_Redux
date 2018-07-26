@@ -27,12 +27,13 @@ class Searchbar extends React.Component {
         };
     }
 
-    handleChangeofSearch = (event, value) => {
+     handleChangeofSearch = (event, value) => {
         this.setState({ title: value });
         const title = value;
         const { article } = this.props;
         article({ title });
     }
+
 
     handleListThing = (event, index, value) => {
         console.log(value);
@@ -61,17 +62,6 @@ class Searchbar extends React.Component {
               <div className="row down">
                 <div className="col-md-2" />
                 <div className="col-md-8">
-                  {/* <select value={this.state.views} onChange={this.handleListThing} id="select-man" className="custom-select form-control">
-                                <option value="" disabled selected>
-                                    Option for Views
-                                </option>
-                                <option value="list_view">
-                                    List View
-                                </option>
-                                <option value="Grid_view">
-                                    Grid View
-                                </option>
-                            </select> */}
                   <SelectField floatingLabelText="View" value={this.state.views} onChange={this.handleListThing}>
                     <MenuItem value="list_view" primaryText="List View" />
                     <MenuItem value="Grid_view" primaryText="Grid View" />

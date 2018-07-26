@@ -16,7 +16,6 @@ const initialState = {
 let user = [];
 let sorteddata = [];
 let filterdata = [];
-const commentsection = [];
 let repodata = [];
 let dumb = [];
 const fred = [];
